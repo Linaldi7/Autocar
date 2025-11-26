@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout — AutoCar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a class="logo" href="index.html"><img src="assets/logo.png" alt="AutoCar" height="36"><span>AutoCar</span></a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="loja.html">Loja</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container checkout-page">
+    <h1>Finalizar Compra</h1>
+    <div class="checkout-grid">
+      <form id="checkout-form" class="checkout-form">
+        <h2>Dados do cliente</h2>
+        <label>Nome completo <input name="nome" required /></label>
+        <label>Email <input name="email" type="email" required /></label>
+        <label>Telefone <input name="telefone" required /></label>
+        <label>CPF <input name="cpf" required /></label>
+
+        <h2>Endereço</h2>
+        <label>CEP <input name="cep" required /></label>
+        <label>Endereço <input name="endereco" required /></label>
+        <label>Nº <input name="numero" required /></label>
+        <label>Complemento <input name="complemento" /></label>
+        <label>Bairro <input name="bairro" required /></label>
+        <label>Cidade <input name="cidade" required /></label>
+        <label>Estado <input name="estado" required /></label>
+
+        <h2>Pagamento (simulado)</h2>
+        <label>Forma de pagamento
+          <select name="pagamento">
+            <option value="pix">PIX</option>
+            <option value="cartao">Cartão</option>
+            <option value="boleto">Boleto</option>
+          </select>
+        </label>
+
+        <button class="btn" type="submit">Confirmar pedido</button>
+      </form>
+
+      <aside class="order-preview">
+        <h2>Resumo do pedido</h2>
+        <div id="order-items"></div>
+        <div class="summary">
+          <div>Subtotal: R$ <span id="preview-subtotal">0.00</span></div>
+          <div>Frete: R$ <span id="preview-shipping">0.00</span></div>
+          <div class="total">Total: R$ <span id="preview-total">0.00</span></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>AutoCar</div>
+  </footer>
+
+  <script src="products-data.js"></script>
+<script src="app.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    renderCheckoutPreview();
+    updateCartCount();
+
+    // --- Evento do formulário ---
+    document.getElementById("checkout-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const form = e.target;
+
+        // pegar usuário logado
+        const user = JSON.parse(localStorage.getItem("autocar_user") || "{}");
+
+        if (!user.id) {
+            alert("Você precisa estar logado para finalizar a compra.");
+            window.location = "login.html";
+            return;
+        }
+
+        // pegar itens do carrinho
+        const cart = getCart();
+        if (cart.length === 0) {
+            alert("Seu carrinho está vazio.");
+            return;
+        }
+
+        // converter carrinho para API
+        const apiItems = cart.map(i => ({
+            produto_id: i.id,
+            quantidade: i.qty
+        }));
+
+        // enviar pedido REAL
+        const res = await fetch("http://127.0.0.1:5000/pedidos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                usuario_id: user.id,
+                items: apiItems
+            })
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+            alert(data.error || "Erro ao finalizar pedido");
+            return;
+        }
+
+        // mostrar POP-IT
+        showPopIt();
+
+        setTimeout(() => {
+            clearCart();
+            updateCartCount();
+            window.location = "index.html";
+        }, 1800);
+    });
+});
+</script>
+
+  <footer class="az-footer">
+
+  <div class="az-footer-top">
+    <div class="az-ft-item">
+      <span class="az-icon">📍</span>
+      <a href="#">Encontre Uma Loja</a>
+    </div>
+
+    <div class="az-ft-item">
+      <span class="az-icon">📦</span>
+      <a href="#">Confira Nossas Ofertas!</a>
+    </div>
+
+    <div class="az-ft-item">
+      <span class="az-icon">💼</span>
+      <a href="#">Trabalhe Conosco</a>
+    </div>
+
+    <div class="az-ft-social">
+      <a href="#"><img src="img/facebook.png"></a>
+      <a href="#"><img src="img/instagram.png"></a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="az-footer-links">
+    <div class="col">
+      <h3>LOJAS AUTOCAR</h3>
+      <a href="#">Informações das Lojas</a>
+      <a href="#">Cartões Vale-Compra</a>
+      <a href="#">Vale-Presente</a>
+      <a href="#">Folheto Promocional</a>
+    </div>
+
+    <div class="col">
+      <h3>SOBRE NÓS</h3>
+      <a href="#">Trabalhe Conosco</a>
+      <a href="#">Nossa História</a>
+      <a href="#">Informações para Investidores</a>
+      <a href="#">Atendimento ao Cliente</a>
+    </div>
+
+    <div class="col">
+      <h3>SITES ADICIONAIS</h3>
+      <a href="#">AutoCar US</a>
+      <a href="#">AutoCar MX</a>
+      <a href="#">Configurações de Cookies</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="az-footer-bottom">
+    <p><a href="#">Termos & Condições</a> • <a href="#">Política de Privacidade</a></p>
+    <p>© 2025 AutoCar do Brasil. Todos os direitos reservados.</p>
+  </div>
+
+</footer>
+
+<style>
+  /* Estilo do pop-it */
+  #popit-finish {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.2);
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, #00ff77, #dfdfdf);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 26px;
+    font-weight: bold;
+    opacity: 0;
+    z-index: 999999;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+
+  #popit-finish.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+</style>
+
+<div id="popit-finish"> Pedido Finalizado!</div>
+
+<script>
+  function showPopIt() {
+    const pop = document.getElementById("popit-finish");
+    pop.classList.add("show");
+
+    setTimeout(() => {
+      pop.classList.remove("show");
+    }, 2500);
+  }
+
+
+</script>
+
+</body>
+</html>
