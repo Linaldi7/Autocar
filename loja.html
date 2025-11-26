@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Loja — AutoCar</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a class="logo" href="index.html"><img src="assets/logo.png" alt="AutoCar" height="36"><span>AutoCar</span></a>
+      <div class="search-area">
+        <input id="page-search" placeholder="Buscar por peça, SKU, marca..." />
+        <button id="page-search-btn">Buscar</button>
+      </div>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a class="active" href="loja.html">Loja</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+        <a class="cart-link" href="cart.html">Carrinho (<span id="cart-count">0</span>)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <aside class="filters">
+      <h3>Filtros</h3>
+      <label>Categoria
+        <select id="filter-category">
+          <option value="">Todas</option>
+        </select>
+      </label>
+
+      <label>Marca
+        <select id="filter-brand">
+          <option value="">Todas</option>
+        </select>
+      </label>
+
+      <label>Ordenar
+        <select id="sort-by">
+          <option value="relevance">Relevância</option>
+          <option value="price-asc">Preço: menor → maior</option>
+          <option value="price-desc">Preço: maior → menor</option>
+        </select>
+      </label>
+
+      <button id="clear-filters" class="btn-outline">Limpar filtros</button>
+    </aside>
+
+    <section class="catalog">
+      <div class="catalog-header">
+        <h1>Catálogo</h1>
+        <div id="catalog-results">0 produtos</div>
+      </div>
+
+      <div id="product-list" class="product-grid"></div>
+
+      <div id="pagination" class="pagination"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>AutoCar — A peça certa. Pra hoje.</div>
+  </footer>
+
+  <script src="app.js"></script>
+
+  <footer class="az-footer">
+
+  <div class="az-footer-top">
+    <div class="az-ft-item">
+      <span class="az-icon">📍</span>
+      <a href="#">Encontre Uma Loja</a>
+    </div>
+
+    <div class="az-ft-item">
+      <span class="az-icon">📦</span>
+      <a href="#">Confira Nossas Ofertas!</a>
+    </div>
+
+    <div class="az-ft-item">
+      <span class="az-icon">💼</span>
+      <a href="#">Trabalhe Conosco</a>
+    </div>
+
+    <div class="az-ft-social">
+      <a href="#"><img src="img/facebook.png"></a>
+      <a href="#"><img src="img/instagram.png"></a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="az-footer-links">
+    <div class="col">
+      <h3>LOJAS AUTOCAR</h3>
+      <a href="#">Informações das Lojas</a>
+      <a href="#">Cartões Vale-Compra</a>
+      <a href="#">Vale-Presente</a>
+      <a href="#">Folheto Promocional</a>
+    </div>
+
+    <div class="col">
+      <h3>SOBRE NÓS</h3>
+      <a href="#">Trabalhe Conosco</a>
+      <a href="#">Nossa História</a>
+      <a href="#">Informações para Investidores</a>
+      <a href="#">Atendimento ao Cliente</a>
+    </div>
+
+    <div class="col">
+      <h3>SITES ADICIONAIS</h3>
+      <a href="#">AutoCar US</a>
+      <a href="#">AutoCar MX</a>
+      <a href="#">Configurações de Cookies</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="az-footer-bottom">
+    <p><a href="#">Termos & Condições</a> • <a href="#">Política de Privacidade</a></p>
+    <p>© 2025 AutoCar do Brasil. Todos os direitos reservados.</p>
+  </div>
+
+</footer>
+
+</body>
+</html>
