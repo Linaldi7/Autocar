@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login — Painel Admin | AutoCar</title>
+
+    <link rel="stylesheet" href="admin.css">
+
+    <style>
+        /* ESTILO EXCLUSIVO DO LOGIN */
+        body {
+            background: linear-gradient(135deg, #e6f0ff 0%, #ffffff 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            padding: 32px;
+            border-radius: 14px;
+            box-shadow: 0 6px 28px rgba(0,0,0,0.12);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(18px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-box h2 {
+            font-size: 28px;
+            text-align: center;
+            font-weight: 800;
+            color: #007bff;
+            margin-bottom: 6px;
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 26px;
+        }
+
+        .login-field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 18px;
+        }
+
+        .login-field label {
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #333;
+        }
+
+        .login-field input {
+            padding: 14px;
+            border-radius: 8px;
+            border: 1px solid #cccccc;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .login-field input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0,123,255,0.25);
+        }
+
+        .btn-login {
+            width: 100%;
+            background: #007bff;
+            border: none;
+            color: white;
+            padding: 14px;
+            font-size: 17px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: 0.2s;
+        }
+
+        .btn-login:hover {
+            background: #0064d1;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="login-box">
+
+        <h2>AutoCar Admin</h2>
+        <p class="login-subtitle">Bem-vindo! Faça login para continuar.</p>
+
+        <div class="login-field">
+            <label>Usuário</label>
+            <input id="admin-user" type="text" placeholder="admin">
+        </div>
+
+        <div class="login-field">
+            <label>Senha</label>
+            <input id="admin-pass" type="password" placeholder="••••••">
+        </div>
+
+        <button class="btn-login" onclick="adminLogin()">Entrar</button>
+
+        <p class="login-footer">© 2025 AutoCar | Administração</p>
+    </div>
+
+    <script src="admin.js"></script>
+
+</body>
+</html>
