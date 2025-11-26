@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Produto — Admin | AutoCar</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body onload="loadFormProduto()">
+
+<!-- ====== SIDEBAR ====== -->
+<aside class="sidebar">
+    <div class="sidebar-logo">AutoCar Admin</div>
+
+    <nav class="sidebar-menu">
+        <a href="index.html">📊 Dashboard</a>
+        <a class="active" href="produtos.html">🛠 Produtos</a>
+        <a href="clientes.html">👥 Clientes</a>
+        <a href="pedidos.html">📦 Pedidos</a>
+        <a href="login.html" onclick="localStorage.removeItem('ADMIN_LOGGED')">⛔ Sair</a>
+    </nav>
+</aside>
+
+<!-- ====== MAIN ====== -->
+<main class="main">
+
+    <header class="main-header">
+        <h1 id="titulo-form">Novo Produto</h1>
+        <button class="btn-outline" onclick="window.location.href='produtos.html'">← Voltar</button>
+    </header>
+
+    <section class="panel form-panel">
+
+        <div class="form-grid">
+
+            <div class="form-field">
+                <label>Nome do Produto</label>
+                <input id="nome" type="text" placeholder="Pastilha de Freio..." required>
+            </div>
+
+            <div class="form-field">
+                <label>Preço (R$)</label>
+                <input id="preco" type="number" step="0.01" placeholder="129.90" required>
+            </div>
+
+            <div class="form-field">
+                <label>Categoria</label>
+                <input id="categoria" type="text" placeholder="Freios / Óleos / Filtros..." required>
+            </div>
+
+            <div class="form-field">
+                <label>Marca</label>
+                <input id="marca" type="text" placeholder="Bosch, NGK, Magneti Marelli..." required>
+            </div>
+
+            <div class="form-field">
+                <label>Estoque</label>
+                <input id="estoque" type="number" min="0" placeholder="50" required>
+            </div>
+
+            <div class="form-field">
+                <label>Imagens (separadas por vírgula)</label>
+                <input id="images" type="text" placeholder="img/produto1.png,img/produto2.png">
+            </div>
+
+            <div class="form-field form-full">
+                <label>Descrição</label>
+                <textarea id="descricao" rows="4" placeholder="Descrição detalhada do produto..."></textarea>
+            </div>
+
+        </div>
+
+        <button class="btn-primary" onclick="salvarProduto()">Salvar Produto</button>
+
+    </section>
+
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>
