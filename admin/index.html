@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Painel Admin — AutoCar</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body onload="loadDashboard()">
+
+<!-- ======= SIDEBAR ======= -->
+<aside class="sidebar">
+    <div class="sidebar-logo">AutoCar Admin</div>
+
+    <nav class="sidebar-menu">
+        <a class="active" href="index.html">📊 Dashboard</a>
+        <a href="produtos.html">🛠 Produtos</a>
+        <a href="clientes.html">👥 Clientes</a>
+        <a href="pedidos.html">📦 Pedidos</a>
+        <a href="login.html" onclick="localStorage.removeItem('ADMIN_LOGGED')">⛔ Sair</a>
+    </nav>
+</aside>
+
+<!-- ======= CONTEÚDO PRINCIPAL ======= -->
+<main class="main">
+
+    <header class="main-header">
+        <h1>Dashboard</h1>
+        <span>Bem-vindo(a), Admin</span>
+    </header>
+
+    <!-- ======= CARDS ======= -->
+    <section class="cards-grid">
+
+        <div class="card">
+            <h3>Produtos</h3>
+            <p id="card-produtos">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Clientes</h3>
+            <p id="card-clientes">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Pedidos</h3>
+            <p id="card-pedidos">0</p>
+        </div>
+
+        <div class="card">
+            <h3>Faturamento</h3>
+            <p id="card-faturamento">R$ 0,00</p>
+        </div>
+
+    </section>
+
+    <!-- ======= ÚLTIMOS PEDIDOS ======= -->
+    <section class="panel">
+        <h2>Últimos Pedidos</h2>
+
+        <table class="table-default">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Total</th>
+                    <th>Cliente</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody id="ultimos-pedidos">
+                <!-- preenchido via JS -->
+            </tbody>
+        </table>
+    </section>
+
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>
