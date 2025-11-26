@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Contato - AutoCar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <a class="logo" href="index.html">
+      <img src="assets/logo.png" alt="AutoCar" height="36">
+      <span>AutoCar</span>
+    </a>
+
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="loja.html">Loja</a>
+      <a href="sobre.html">Sobre</a>
+      <a class="active" href="contato.html">Contato</a>
+      <a class="cart-link" href="cart.html">Carrinho (<span id="cart-count">0</span>)</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="contact-container">
+
+    <!-- TÍTULO GERAL -->
+    <h1 class="contact-title">Fale com a AutoCar</h1>
+
+    <!-- FORMULÁRIO -->
+    <section class="contact-form-wrap">
+      <form id="contactForm" class="contact-form">
+        <label for="nome">Seu nome</label>
+        <input id="nome" name="nome" type="text" placeholder="Digite seu nome" required>
+
+        <label for="email">Seu email</label>
+        <input id="email" name="email" type="email" placeholder="voce@email.com" required>
+
+        <label for="mensagem">Mensagem</label>
+        <textarea id="mensagem" name="mensagem" placeholder="Digite sua mensagem..." required></textarea>
+
+        <div style="display:flex;gap:12px;align-items:center">
+          <button type="submit" class="btn-enviar">Enviar</button>
+          <small id="form-note" style="color:var(--muted);font-size:14px">Responderemos em até 48h.</small>
+        </div>
+      </form>
+    </section>
+
+    <!-- CARTÃO DE VISITA -->
+    <aside class="card-visita">
+      <h2>Cartão de visita</h2>
+
+      <div class="cartao-box">
+        <!-- use a imagem que tiver na pasta /img ou /assets -->
+        <img src="img/cartão.jpg" alt="Cartão AutoCar" onerror="this.src='assets/cartao_placeholder.png'">
+      </div>
+
+      <div class="card-info" style="margin-top:14px;color:#222;line-height:1.5">
+        
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+<!-- POPUP (sucesso) -->
+<div id="popup" class="popup" aria-hidden="true">
+  <div class="popup-content" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+    <p id="popupTitle">Mensagem enviada com sucesso! 🚀</p>
+    <button id="closePopup" class="btn-enviar">OK</button>
+  </div>
+</div>
+
+<footer class="az-footer">
+  <div class="az-footer-top">
+    <div class="az-ft-item">
+      <span class="az-icon">📍</span>
+      <a href="#">Encontre Uma Loja</a>
+    </div>
+    <div class="az-ft-item">
+      <span class="az-icon">📦</span>
+      <a href="#">Confira Nossas Ofertas!</a>
+    </div>
+    <div class="az-ft-item">
+      <span class="az-icon">💼</span>
+      <a href="#">Trabalhe Conosco</a>
+    </div>
+    <div class="az-ft-social">
+      <a href="#"><img src="img/facebook.png" alt="fb"></a>
+      <a href="#"><img src="img/instagram.png" alt="ig"></a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="az-footer-links">
+    <div class="col">
+      <h3>LOJAS AUTOCAR</h3>
+      <a href="#">Informações das Lojas</a>
+      <a href="#">Cartões Vale-Compra</a>
+      <a href="#">Vale-Presente</a>
+      <a href="#">Folheto Promocional</a>
+    </div>
+    <div class="col">
+      <h3>SOBRE NÓS</h3>
+      <a href="#">Trabalhe Conosco</a>
+      <a href="#">Nossa História</a>
+      <a href="#">Informações para Investidores</a>
+      <a href="#">Atendimento ao Cliente</a>
+    </div>
+    <div class="col">
+      <h3>SITES ADICIONAIS</h3>
+      <a href="#">AutoCar US</a>
+      <a href="#">AutoCar MX</a>
+      <a href="#">Configurações de Cookies</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="az-footer-bottom">
+    <p><a href="#">Termos & Condições</a> • <a href="#">Política de Privacidade</a></p>
+    <p>© 2025 AutoCar do Brasil. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+/* comportamento do formulário: mostra popup e reseta */
+const form = document.getElementById('contactForm');
+const popup = document.getElementById('popup');
+const closeBtn = document.getElementById('closePopup');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // opcional: aqui você pode enviar via fetch para o backend
+  // fetch('/contato', { method:'POST', body: JSON.stringify({...}) })
+
+  popup.style.display = 'flex';
+  popup.setAttribute('aria-hidden', 'false');
+  form.reset();
+});
+
+closeBtn.addEventListener('click', () => {
+  popup.style.display = 'none';
+  popup.setAttribute('aria-hidden', 'true');
+});
+</script>
+
+</body>
+</html>
