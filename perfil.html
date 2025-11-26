@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Perfil — AutoCar</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background: #111;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin: 0;
+        }
+
+        .profile-container {
+            max-width: 900px;
+            margin: 70px auto;
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px #0009;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #f5c400;
+            font-size: 28px;
+        }
+
+        .info-block {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+
+        .info-block p {
+            margin: 6px 0;
+            font-size: 16px;
+        }
+
+        .edit-btn {
+            padding: 10px 18px;
+            background: #f5c400;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .edit-btn:hover {
+            background: #ffdb4d;
+        }
+
+        .logout {
+            margin-top: 20px;
+            background: #d9534f;
+            color: white;
+        }
+
+        .logout:hover {
+            background: #ff6b66;
+        }
+
+        .orders-list {
+            margin-top: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        table th, table td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        table tr {
+            background: #222;
+            border-bottom: 2px solid #333;
+        }
+
+        table th {
+            background: #333;
+            color: #f5c400;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a class="logo" href="index.html">
+            <img src="assets/logo.png" height="36"><span>AutoCar</span>
+        </a>
+
+        <nav class="nav">
+            <a href="index.html">Home</a>
+            <a href="loja.html">Loja</a>
+            <a href="sobre.html">Sobre</a>
+            <a href="contato.html">Contato</a>
+            <a href="perfil.html" class="active">Meu Perfil</a>
+            <a class="cart-link" href="cart.html">Carrinho (<span id="cart-count">0</span>)</a>
+        </nav>
+    </div>
+</header>
+
+<div class="profile-container">
+
+    <h2>Meu Perfil</h2>
+
+    <div class="info-block">
+        <p><strong>Nome:</strong> <span id="p-nome"></span></p>
+        <p><strong>Email:</strong> <span id="p-email"></span></p>
+        <p><strong>Telefone:</strong> <span id="p-tel"></span></p>
+
+        <button class="edit-btn" onclick="editarPerfil()">Editar Dados</button>
+        <button class="edit-btn logout" onclick="logout()">Sair</button>
+    </div>
+
+    <h2>Meus Pedidos</h2>
+
+    <div class="orders-list">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody id="orders-body"></tbody>
+        </table>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+
+    updateCartCount();
+
+    // pegar usuário logado
+    const user = JSON.parse(localStorage.getItem("autocar_user") || "{}");
+
+    if (!user.id) {
+        alert("Você precisa estar logado.");
+        window.location = "login.html";
+        return;
+    }
+
+    // preencher dados
+    document.getElementById("p-nome").textContent = user.nome;
+    document.getElementById("p-email").textContent = user.email;
+    document.getElementById("p-tel").textContent = user.telefone || "Não informado";
+
+    // carregar pedidos REAIS
+    const pedidos = await fetch("http://127.0.0.1:5000/admin/pedidos").then(r => r.json());
+
+    const meusPedidos = pedidos.filter(p => p.clienteId === user.id);
+
+    const tbody = document.getElementById("orders-body");
+
+    tbody.innerHTML = meusPedidos.length === 0
+        ? `<tr><td colspan="4">Nenhum pedido encontrado.</td></tr>`
+        : meusPedidos.map(p => `
+            <tr>
+                <td>${p.id}</td>
+                <td>R$ ${p.total.toFixed(2)}</td>
+                <td>${p.status}</td>
+                <td>${(p.data || "").split(" ")[0]}</td>
+            </tr>
+        `).join("");
+});
+
+function editarPerfil() {
+    alert("Edição pode ser integrada ao backend se quiser!");
+}
+
+function logout() {
+    localStorage.removeItem("autocar_user");
+    alert("Você saiu da conta.");
+    window.location = "index.html";
+}
+</script>
+
+</body>
+</html>
