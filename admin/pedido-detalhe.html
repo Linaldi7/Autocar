@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Pedido — Admin | AutoCar</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body onload="loadPedidoDetalhe()">
+
+<!-- ====== SIDEBAR ====== -->
+<aside class="sidebar">
+    <div class="sidebar-logo">AutoCar Admin</div>
+
+    <nav class="sidebar-menu">
+        <a href="index.html">📊 Dashboard</a>
+        <a href="produtos.html">🛠 Produtos</a>
+        <a href="clientes.html">👥 Clientes</a>
+        <a class="active" href="pedidos.html">📦 Pedidos</a>
+        <a href="login.html" onclick="localStorage.removeItem('ADMIN_LOGGED')">⛔ Sair</a>
+    </nav>
+</aside>
+
+<!-- ====== MAIN ====== -->
+<main class="main">
+
+    <header class="main-header">
+        <h1>Detalhes do Pedido <span id="pedido-id"></span></h1>
+        <button class="btn-outline" onclick="window.location.href='pedidos.html'">← Voltar</button>
+    </header>
+
+    <section class="panel">
+
+        <h2>Informações do Pedido</h2>
+
+        <div class="order-info">
+            <p><strong>Cliente:</strong> João da Silva</p>
+            <p><strong>Email:</strong> joao@gmail.com</p>
+            <p><strong>Status:</strong> Enviado</p>
+            <p><strong>Data:</strong> 22/11/2024</p>
+        </div>
+
+        <h3>Itens</h3>
+
+        <table class="table-default">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Qtd</th>
+                    <th>Preço</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Itens fake só para apresentação -->
+                <tr>
+                    <td>Pastilha de Freio</td>
+                    <td>1</td>
+                    <td>R$ 129,90</td>
+                    <td>R$ 129,90</td>
+                </tr>
+
+                <tr>
+                    <td>Óleo 5W30</td>
+                    <td>2</td>
+                    <td>R$ 79,90</td>
+                    <td>R$ 159,80</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="pedido-total">
+            <p><strong>Total do Pedido:</strong> R$ 289,70</p>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>
