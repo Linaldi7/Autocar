@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos — Admin | AutoCar</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body onload="loadProdutos()">
+
+<!-- ====== SIDEBAR ====== -->
+<aside class="sidebar">
+    <div class="sidebar-logo">AutoCar Admin</div>
+
+    <nav class="sidebar-menu">
+        <a href="index.html">📊 Dashboard</a>
+        <a class="active" href="produtos.html">🛠 Produtos</a>
+        <a href="clientes.html">👥 Clientes</a>
+        <a href="pedidos.html">📦 Pedidos</a>
+        <a href="login.html" onclick="localStorage.removeItem('ADMIN_LOGGED')">⛔ Sair</a>
+    </nav>
+</aside>
+
+<!-- ====== CONTEÚDO ====== -->
+<main class="main">
+
+    <header class="main-header">
+        <h1>Gerenciar Produtos</h1>
+        <button class="btn-primary" onclick="window.location.href='produto-editar.html'">
+            + Adicionar Produto
+        </button>
+    </header>
+
+    <section class="panel">
+
+        <table class="table-default">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Preço</th>
+                    <th>Categoria</th>
+                    <th>Marca</th>
+                    <th>Estoque</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabela-produtos">
+                <!-- preenchido via admin.js -->
+            </tbody>
+        </table>
+
+    </section>
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>
