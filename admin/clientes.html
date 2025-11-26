@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes — Admin | AutoCar</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body onload="loadClientes()">
+
+<!-- ====== SIDEBAR ====== -->
+<aside class="sidebar">
+    <div class="sidebar-logo">AutoCar Admin</div>
+
+    <nav class="sidebar-menu">
+        <a href="index.html">📊 Dashboard</a>
+        <a href="produtos.html">🛠 Produtos</a>
+        <a class="active" href="clientes.html">👥 Clientes</a>
+        <a href="pedidos.html">📦 Pedidos</a>
+        <a href="login.html" onclick="localStorage.removeItem('ADMIN_LOGGED')">⛔ Sair</a>
+    </nav>
+</aside>
+
+<!-- ====== MAIN ====== -->
+<main class="main">
+
+    <header class="main-header">
+        <h1>Clientes</h1>
+    </header>
+
+    <section class="panel">
+
+        <table class="table-default">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Pedidos</th>
+                </tr>
+            </thead>
+
+            <tbody id="tabela-clientes">
+                <!-- preenchido via admin.js -->
+            </tbody>
+        </table>
+
+    </section>
+
+</main>
+
+<script src="admin.js"></script>
+</body>
+</html>
