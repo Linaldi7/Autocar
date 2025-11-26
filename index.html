@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AutoCar — Autopeças</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="assets/logo.png" alt="AutoCar" height="40">
+        <span>AutoCar</span>
+      </a>
+      <div class="search-area">
+        <input id="global-search" placeholder="Buscar por peça, SKU, marca ou modelo..." />
+        <button id="search-btn">Buscar</button>
+      </div>
+      <nav class="nav">
+        <a href="loja.html">Loja</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="contato.html">Contato</a>
+        <a class="cart-link" href="cart.html">Carrinho (<span id="cart-count">0</span>)</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-left">
+        <h1>A peça certa. Pra hoje.</h1>
+        <p>Encontre autopeças, filtros, freios, óleos e acessórios com compatibilidade por modelo e envio rápido.</p>
+        <a class="btn" href="loja.html">Ver catálogo</a>
+      </div>
+      <div class="hero-right">
+        <img src="img/promo.png" alt="Promo" />
+      </div>
+    </section>
+
+    <section class="highlights">
+      <h2>Destaques</h2>
+      <div class="cards">
+        <article class="card promo">
+          <h3>Freios em promoção</h3>
+          <p>Até 20% off em pastilhas e discos selecionados.</p>
+        </article>
+        <article class="card">
+          <h3>Entrega rápida</h3>
+          <p>Retirada na loja em até 1h (dependendo do estoque).</p>
+        </article>
+        <article class="card">
+          <h3>Suporte técnico</h3>
+          <p>Ajuda para identificar a peça correta por modelo/ano.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="home-products">
+      <h2>Produtos populares</h2>
+      <div id="home-product-list" class="product-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>AutoCar</strong> — Rua Eusebio stevaux, 824 — São Paulo, SP
+    </div>
+    
+  </footer>
+
+  <script src="products-data.js"></script>
+  <script src="app.js"></script>
+  <script>
+    // Inicialização da home: renderiza produtos populares
+    document.addEventListener('DOMContentLoaded', () => {
+      renderHomeProducts();
+      updateCartCount();
+      // busca global
+      document.getElementById('search-btn').addEventListener('click', () => {
+        const q = document.getElementById('global-search').value.trim();
+        if (q) location.href = `loja.html?q=${encodeURIComponent(q)}`;
+      });
+    });
+  </script>
+
+  <footer class="az-footer">
+
+  <div class="az-footer-top">
+    <div class="az-ft-item">
+      <span class="az-icon">📍</span>
+      <a href="#">Encontre Uma Loja</a>
+    </div>
+
+    <div class="az-ft-item">
+      <span class="az-icon">📦</span>
+      <a href="#">Confira Nossas Ofertas!</a>
+    </div>
+
+    <div class="az-ft-item">
+      <span class="az-icon">💼</span>
+      <a href="#">Trabalhe Conosco</a>
+    </div>
+
+    <div class="az-ft-social">
+      <a href="#"><img src="img/facebook.png"></a>
+      <a href="#"><img src="img/instagram.png"></a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="az-footer-links">
+    <div class="col">
+      <h3>LOJAS AUTOCAR</h3>
+      <a href="#">Informações das Lojas</a>
+      <a href="#">Cartões Vale-Compra</a>
+      <a href="#">Vale-Presente</a>
+      <a href="#">Folheto Promocional</a>
+    </div>
+
+    <div class="col">
+      <h3>SOBRE NÓS</h3>
+      <a href="#">Trabalhe Conosco</a>
+      <a href="#">Nossa História</a>
+      <a href="#">Informações para Investidores</a>
+      <a href="#">Atendimento ao Cliente</a>
+    </div>
+
+    <div class="col">
+      <h3>PRIVACIDADE</h3>
+      <a href="#">Configurações de Cookies</a>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="az-footer-bottom">
+    <p><a href="#">Termos & Condições</a> • <a href="#">Política de Privacidade</a></p>
+    <p>© 2025 AutoCar do Brasil. Todos os direitos reservados.</p>
+  </div>
+
+</footer>
+</body>
+</html>
