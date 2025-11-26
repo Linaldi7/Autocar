@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Conta — AutoCar</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            background: #111;
+            font-family: Arial, sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .register-box {
+            background: #1a1a1a;
+            padding: 35px 40px;
+            width: 380px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px #0009;
+        }
+
+        .register-box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #f5c400;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .register-box label {
+            display: block;
+            margin-top: 12px;
+            font-size: 14px;
+            letter-spacing: .5px;
+        }
+
+        .register-box input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: none;
+            box-sizing: border-box;
+            background: #333;
+            color: white;
+            font-size: 15px;
+        }
+
+        .register-box button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 25px;
+            font-size: 16px;
+            background: #f5c400;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .register-box button:hover {
+            background: #ffdb4d;
+        }
+
+        .register-box p {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .register-box a {
+            color: #f5c400;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="register-box">
+    <h2>Criar Conta</h2>
+
+    <form id="register-form">
+
+        <label>Nome completo</label>
+        <input type="text" id="reg-nome" required>
+
+        <label>Email</label>
+        <input type="email" id="reg-email" required>
+
+        <label>Telefone (opcional)</label>
+        <input type="text" id="reg-tel">
+
+        <label>Senha</label>
+        <input type="password" id="reg-senha" required>
+
+        <button type="submit">Criar Conta</button>
+
+        <p>Já tem conta? <a href="login.html">Entrar</a></p>
+    </form>
+</div>
+
+<script>
+document.getElementById("register-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nome = document.getElementById("reg-nome").value.trim();
+    const email = document.getElementById("reg-email").value.trim();
+    const telefone = document.getElementById("reg-tel").value.trim();
+    const senha = document.getElementById("reg-senha").value.trim();
+
+    const res = await fetch("http://127.0.0.1:5000/usuarios", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ nome, email, telefone, senha })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+        alert(data.error || "Erro ao criar conta");
+        return;
+    }
+
+    alert("Conta criada com sucesso! Agora faça login.");
+    window.location = "login.html";
+});
+</script>
+
+</body>
+</html>
